@@ -42,3 +42,9 @@ button {
 button:hover {
     background-color: #45a049;
 }
+
+#map {
+    height: 400px;
+    width: 100%;
+}
+
