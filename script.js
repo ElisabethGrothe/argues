@@ -46,3 +46,26 @@ function handleChoice(choice) {
     // Implement logic to verify choice and update score
     alert(`You chose: ${choice}`);
 }
+
+// Update the displayed year as the slider moves
+document.getElementById('year-slider').oninput = function() {
+    document.getElementById('year-value').textContent = this.value;
+};
+
+// Initialize Leaflet map
+function initMap() {
+    const map = L.map('map').setView([51.505, -0.09], 2);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    map.on('click', function(e) {
+        // Handle map click for country guessing
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    initMap();
+    // existing code...
+});
