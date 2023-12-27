@@ -1,71 +1,76 @@
+const apiKey = 'KB4tTGDH'; // Your Rijksmuseum API key
+let artworks = [];
+let currentArtworkIndex = 0;
 
-document.addEventListener('DOMContentLoaded', function() {
-    const nextButton = document.getElementById('next');
-    nextButton.addEventListener('click', loadNewArtwork);
-});
+document.getElementById('next').addEventListener('click', loadNextArtwork);
 
-function loadNewArtwork() {
-    // Example API call to fetch artwork data
-    // Replace with actual API call and handle response data
-    const artworkData = {
-        src: 'https://via.placeholder.com/600x400',
-        time: ['1800s', '1900s', '2000s', '2100s'],
-        period: ['Renaissance', 'Baroque', 'Modern', 'Contemporary'],
-        artist: ['Artist A', 'Artist B', 'Artist C', 'Artist D'],
-        location: ['France', 'Italy', 'USA', 'Japan'],
-        material: ['Oil', 'Acrylic', 'Watercolor', 'Digital']
-    };
-
-    updateArtwork(artworkData);
+// Fetch a batch of artworks from the Rijksmuseum API
+function fetchArtworks() {
+    fetch(`https://www.rijksmuseum.nl/api/en/collection?key=${apiKey}&format=json&ps=10&p=${getRandomPage()}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data && data.artObjects) {
+                artworks = data.artObjects;
+                currentArtworkIndex = 0;
+                displayArtwork(artworks[currentArtworkIndex]);
+            }
+        })
+        .catch(error => console.error('Error:', error));
 }
 
-function updateArtwork(data) {
-    document.getElementById('artwork').src = data.src;
-    updateQuestion('time-question', 'When was this created?', data.time);
-    updateQuestion('period-question', 'What is the period?', data.period);
-    updateQuestion('artist-question', 'Who is the artist?', data.artist);
-    updateQuestion('location-question', 'Where was this created?', data.location);
-    updateQuestion('material-question', 'What material is used?', data.material);
+// Display the current artwork and set up the guessing game
+function displayArtwork(artwork) {
+    document.getElementById('artwork').src = artwork.webImage.url;
+    setupGuessingGame(artwork);
 }
 
-function updateQuestion(containerId, questionText, options) {
-    const container = document.getElementById(containerId);
-    container.innerHTML = `<h3>${questionText}</h3>`;
+// Set up the game for the current artwork (e.g., guessing the artist)
+function setupGuessingGame(artwork) {
+    // Example: Guess the artist's name
+    const questionElement = document.getElementById('question');
+    questionElement.textContent = "Who is the artist of this artwork?";
 
-    options.forEach(option => {
+    const choicesContainer = document.getElementById('choices-container');
+    choicesContainer.innerHTML = '';
+
+    // Randomly select a few other artists for the multiple choice (placeholder logic)
+    const choices = [artwork.principalOrFirstMaker, 'Artist B', 'Artist C', 'Artist D'];
+    choices.sort(() => Math.random() - 0.5); // Shuffle choices
+
+    choices.forEach(choice => {
         const button = document.createElement('button');
-        button.textContent = option;
+        button.textContent = choice;
         button.className = 'choice-button';
-        button.onclick = function() { handleChoice(option); };
-        container.appendChild(button);
+        button.onclick = () => handleChoice(choice, artwork.principalOrFirstMaker);
+        choicesContainer.appendChild(button);
     });
 }
 
-function handleChoice(choice) {
-    // Placeholder for handling choices
-    // Implement logic to verify choice and update score
-    alert(`You chose: ${choice}`);
+// Handle the player's choice
+function handleChoice(selectedChoice, correctAnswer) {
+    if (selectedChoice === correctAnswer) {
+        alert('Correct!');
+    } else {
+        alert('Wrong. The correct answer was ' + correctAnswer);
+    }
+    loadNextArtwork();
 }
 
-// Update the displayed year as the slider moves
-document.getElementById('year-slider').oninput = function() {
-    document.getElementById('year-value').textContent = this.value;
-};
-
-// Initialize Leaflet map
-function initMap() {
-    const map = L.map('map').setView([51.505, -0.09], 2);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '© OpenStreetMap contributors'
-    }).addTo(map);
-
-    map.on('click', function(e) {
-        // Handle map click for country guessing
-    });
+// Load the next artwork for guessing
+function loadNextArtwork() {
+    currentArtworkIndex++;
+    if (currentArtworkIndex >= artworks.length) {
+        // Fetch new artworks if we've gone through the current batch
+        fetchArtworks();
+    } else {
+        displayArtwork(artworks[currentArtworkIndex]);
+    }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    initMap();
-    // existing code...
-});
+// Helper function to get a random page number
+function getRandomPage() {
+    return Math.floor(Math.random() * 100) + 1; // Random page number
+}
+
+// Initial artworks fetch
+fetchArtworks();
