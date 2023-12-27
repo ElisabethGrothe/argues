@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,30 +6,35 @@
     <title>Art Guesser Game</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
-
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
 </head>
 <body>
     <div id="game-container">
         <h1>Art Guesser</h1>
         <img id="artwork" src="" alt="Artwork to guess">
+
+        <!-- Year Slider -->
+        <div id="year-question">
+            <label for="year-slider">Guess the Year:</label>
+            <input type="range" id="year-slider" min="1000" max="2020" value="1500">
+            <span id="year-value">1500</span>
+        </div>
+
+        <!-- Questions Container -->
         <div id="questions-container">
-            <!-- Add separate containers for each type of question -->
             <div class="question" id="time-question"></div>
             <div class="question" id="period-question"></div>
             <div class="question" id="artist-question"></div>
             <div class="question" id="location-question"></div>
             <div class="question" id="material-question"></div>
         </div>
+
+        <!-- Leaflet Map -->
+        <div id="map"></div>
+
+        <!-- Next Artwork Button -->
         <button id="next">Next Artwork</button>
     </div>
     <script src="script.js"></script>
-    <div id="year-question">
-    <label for="year-slider">Guess the Year:</label>
-    <input type="range" id="year-slider" min="1000" max="2020" value="1500">
-    <span id="year-value">1500</span>
-</div>
-<div id="map"></div>
-
 </body>
 </html>
