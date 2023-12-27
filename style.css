@@ -1,9 +1,9 @@
-
 body {
     font-family: Arial, sans-serif;
     text-align: center;
     background-color: #f0f0f0;
 }
+
 #game-container {
     width: 80%;
     margin: auto;
@@ -11,14 +11,18 @@ body {
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 #artwork {
     max-width: 100%;
     height: auto;
     margin: 20px 0;
 }
-.question {
-    margin-bottom: 20px;
+
+#question {
+    font-size: 1.2em;
+    margin: 20px;
 }
+
 .choice-button {
     display: block;
     width: 100%;
@@ -28,9 +32,11 @@ body {
     border: 1px solid #ddd;
     cursor: pointer;
 }
+
 .choice-button:hover {
     background-color: #ddd;
 }
+
 button {
     background-color: #4CAF50;
     color: white;
@@ -39,12 +45,7 @@ button {
     border-radius: 5px;
     cursor: pointer;
 }
+
 button:hover {
     background-color: #45a049;
 }
-
-#map {
-    height: 400px;
-    width: 100%;
-}
-
