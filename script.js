@@ -1,6 +1,6 @@
 let artworks = [
     {
-        src: 'images/Europe/1800s/Klimt/Artwork1.png',
+        src: 'images/Europe/1800s/Klimt/Artwork2.jpeg',
         artist: 'Gustav Klimt',
         title: 'The Kiss',
         year: '1907-1908',
