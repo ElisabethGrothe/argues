@@ -1,14 +1,15 @@
 let artworks = [
     {
-        src: 'images/Europe/1800s/Klimt/Artwork2.jpeg',
+        src: 'images/Europe/1800s/Klimt/Artwork1.png', // Update with the correct path
         artist: 'Gustav Klimt',
         title: 'The Kiss',
         year: '1907-1908',
         origin: 'Austria',
         ownership: 'Österreichische Galerie Belvedere, Vienna',
-        funFact: 'The Kiss by Klimt is known for its elaborate and ornate golden patterns.'
+        funFact: 'The Kiss is Klimt\'s most famous work and is a symbol of Viennese Art Nouveau.',
+        possibleArtists: ['Gustav Klimt', 'Egon Schiele', 'Oskar Kokoschka', 'Richard Gerstl'] // Multiple choice options
     },
-    // ... Add more artworks as needed
+    // ... other artworks
 ];
 
 let currentArtworkIndex = 0;
@@ -17,7 +18,9 @@ document.getElementById('next').addEventListener('click', loadNextArtwork);
 
 // Display the current artwork and set up the guessing game
 function displayArtwork(artwork) {
-    document.getElementById('artwork').src = artwork.src;
+    const artworkImage = document.getElementById('artwork');
+    artworkImage.src = artwork.src;
+    artworkImage.alt = artwork.title; // Good practice to include an alt attribute for accessibility
     setupGuessingGame(artwork);
 }
 
@@ -29,33 +32,28 @@ function setupGuessingGame(artwork) {
     const choicesContainer = document.getElementById('choices-container');
     choicesContainer.innerHTML = '';
 
-    // Normally you'd include multiple choices, for simplicity, we're only adding the correct choice here
-    const button = document.createElement('button');
-    button.textContent = artwork.artist;
-    button.className = 'choice-button';
-    button.onclick = () => handleChoice(artwork.artist, artwork.artist);
-    choicesContainer.appendChild(button);
+    artwork.possibleArtists.forEach(artist => {
+        const button = document.createElement('button');
+        button.textContent = artist;
+        button.className = 'choice-button';
+        button.onclick = () => handleChoice(artist, artwork.artist);
+        choicesContainer.appendChild(button);
+    });
 }
 
 // Handle the player's choice
 function handleChoice(selectedChoice, correctAnswer) {
-    let message = '';
     if (selectedChoice === correctAnswer) {
-        message = `Correct! Fun Fact: ${artworks[currentArtworkIndex].funFact}`;
-        currentArtworkIndex = (currentArtworkIndex + 1) % artworks.length;
+        alert(`Correct! Fun Fact: ${artworks[currentArtworkIndex].funFact}`);
     } else {
-        message = `Wrong. The correct answer was ${correctAnswer}. Try again!`;
+        alert(`Wrong. The correct answer was ${correctAnswer}.`);
     }
-    alert(message);
-    loadNextArtwork(); // Load next artwork whether the guess was right or wrong
+    currentArtworkIndex = (currentArtworkIndex + 1) % artworks.length; // Move to the next artwork
+    loadNextArtwork();
 }
 
 // Load the next artwork for guessing
 function loadNextArtwork() {
-    if (artworks.length === 0) {
-        console.log("No artworks available.");
-        return;
-    }
     displayArtwork(artworks[currentArtworkIndex]);
 }
 
