@@ -1,6 +1,6 @@
 let artworks = [
     {
-        src: 'images/Europe/1800s/Male/Artwork2.png', // Update with the correct path
+        src: 'images/Europe/1800s/Male/Artwork2.jpg', // Update with the correct path
         artist: 'Gustav Klimt',
         title: 'The Kiss',
         year: '1907-1908',
