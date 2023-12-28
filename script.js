@@ -9,7 +9,37 @@ let artworks = [
         funFact: 'The Kiss is Klimt\'s most famous work and is a symbol of Viennese Art Nouveau.',
         possibleArtists: ['Gustav Klimt', 'Egon Schiele', 'Oskar Kokoschka', 'Richard Gerstl'] // Multiple choice options
     },
-    // ... other artworks
+    let artworks = [
+    // ... existing artworks ...
+
+    {
+        src: 'images/europe/1500s/female/artwork1.jpg', // Update with the correct path
+        artist: 'Artemisia Gentileschi',
+        title: 'Judith Slaying Holofernes',
+        year: '1614–20',
+        origin: 'Italy',
+        ownership: 'Uffizi Gallery, Florence',
+        funFact: 'Gentileschi was known for her powerful depictions of strong and suffering women from myths and the Bible.',
+        possibleArtists: ['Artemisia Gentileschi', 'Caravaggio', 'Annibale Carracci', 'Elisabetta Sirani'] // Example multiple choice options
+    },
+    {
+        src: 'images/europe/1400s/female/artwork1.jpg', // Update with the correct path
+        artist: 'Sofonisba Anguissola',
+        title: 'Self-Portrait at the Easel',
+        year: '1556',
+        origin: 'Italy',
+        ownership: 'Lancut Castle, Poland',
+        funFact: 'Anguissola is considered one of the first known female Renaissance painters and had a long and successful career.',
+        possibleArtists: ['Sofonisba Anguissola', 'Titian', 'Michelangelo', 'Lavinia Fontana'] // Example multiple choice options
+    },
+
+    // ... more artworks ...
+];
+
+let currentArtworkIndex = 0;
+
+// ... (rest of the script.js code remains unchanged) ...
+
 ];
 
 let currentArtworkIndex = 0;
