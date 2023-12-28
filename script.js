@@ -1,6 +1,6 @@
 let artworks = [
     {
-        src: 'images/Europe/1800s/Male/Artwork2.jpg', // Make sure the path matches your GitHub repository exactly
+        src: 'images/Europe/1800s/Male/Artwork2.jpg',
         artist: 'Gustav Klimt',
         title: 'The Kiss',
         year: '1907-1908',
@@ -10,7 +10,7 @@ let artworks = [
         possibleArtists: ['Gustav Klimt', 'Egon Schiele', 'Oskar Kokoschka', 'Richard Gerstl']
     },
     {
-        src: 'images/Europe/1500s/Female/f1500sartwork1.jpg', // Update with the correct path
+        src: 'images/Europe/1500s/Female/f1500sartwork1.jpg', 
         artist: 'Artemisia Gentileschi',
         title: 'Judith Slaying Holofernes',
         year: '1614–20',
@@ -20,7 +20,7 @@ let artworks = [
         possibleArtists: ['Artemisia Gentileschi', 'Caravaggio', 'Annibale Carracci', 'Elisabetta Sirani']
     },
     {
-        src: 'images/Europe/1500s/Female/f1500sartwork2.jpg', // Update with the correct path
+        src: 'images/Europe/1400s/Female/f1500sartwork2.jpg', 
         artist: 'Sofonisba Anguissola',
         title: 'Self-Portrait at the Easel',
         year: '1556',
